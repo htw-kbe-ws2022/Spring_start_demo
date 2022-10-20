@@ -15,15 +15,17 @@ public class Greeting {
             this.content = content;
         }
 
-    private int tryParseRow(String row) {
-        int line;
-        try {
-            line = Integer.getInteger(row);
-        }catch (NumberFormatException e){
-            line = -1;
+
+
+        private int tryParseRow(String row) {
+            int line;
+            try {
+                line = Integer.getInteger(row);
+            }catch (NumberFormatException e){
+                line = -1;
+            }
+            return line;
         }
-        return line;
-    }
 
 
 }

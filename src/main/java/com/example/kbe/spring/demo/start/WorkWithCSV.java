@@ -21,6 +21,7 @@ public class WorkWithCSV {
         this.id = id;
         this.answer = answer;
     }
+    public WorkWithCSV(){}
 
 
     @SneakyThrows
