@@ -1,33 +1,20 @@
 package com.example.kbe.spring.demo.start;
 
-import lombok.Data;
-
-@Data
 public class Greeting {
 
+    private final long id;
+    private final String content;
 
-        private final int id;
-        private final String content;
+    public Greeting(long id, String content) {
+        this.id = id;
+        this.content = content;
+    }
 
-        public Greeting(String row, String content) {
-            var line = tryParseRow(row);
-            this.id = line;
-            this.content = content;
-        }
+    public long getId() {
+        return id;
+    }
 
-
-
-
-        private int tryParseRow(String row) {
-            int line;
-            try {
-                line = Integer.getInteger(row);
-            }catch (NumberFormatException e){
-                line = -1;
-            }
-            return line;
-        }
-
-
+    public String getContent() {
+        return content;
+    }
 }
-
