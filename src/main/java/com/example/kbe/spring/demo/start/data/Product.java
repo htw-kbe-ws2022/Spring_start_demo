@@ -1,4 +1,4 @@
-package com.example.kbe.spring.demo.start;
+package com.example.kbe.spring.demo.start.data;
 
 import com.opencsv.bean.CsvBindByPosition;
 import lombok.Data;

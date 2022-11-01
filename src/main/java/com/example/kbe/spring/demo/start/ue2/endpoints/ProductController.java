@@ -1,5 +1,7 @@
-package com.example.kbe.spring.demo.start;
+package com.example.kbe.spring.demo.start.ue2.endpoints;
 
+import com.example.kbe.spring.demo.start.data.Product;
+import com.example.kbe.spring.demo.start.data.ProductResponse;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.web.bind.annotation.GetMapping;

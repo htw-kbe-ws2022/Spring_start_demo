@@ -1,7 +1,8 @@
-package com.example.kbe.spring.demo.start;
+package com.example.kbe.spring.demo.start.ue1.endpoints;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+import com.example.kbe.spring.demo.start.data.Greeting;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +14,7 @@ public class GreetingController {
     private final AtomicLong counter = new AtomicLong();
 
     @GetMapping("/greeting")
-    public  com.example.kbe.spring.demo.start.Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-        return new  com.example.kbe.spring.demo.start.Greeting(counter.incrementAndGet(), String.format(template, name));
+    public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
+        return new Greeting(counter.incrementAndGet(), String.format(template, name));
     }
 }

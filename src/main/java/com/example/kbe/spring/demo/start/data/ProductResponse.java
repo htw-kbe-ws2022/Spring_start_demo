@@ -1,6 +1,5 @@
-package com.example.kbe.spring.demo.start;
+package com.example.kbe.spring.demo.start.data;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.CSVReader;
 import com.opencsv.bean.CsvToBeanBuilder;
 import lombok.Data;
@@ -25,7 +24,7 @@ public class ProductResponse {
         this.row = tryParseRow(row);
     }
 
-    int tryParseRow(String row) {
+    public int tryParseRow(String row) {
         int line;
         try {
             line = Integer.parseInt(row);

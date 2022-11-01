@@ -1,4 +1,4 @@
-package com.example.kbe.spring.demo.start;
+package com.example.kbe.spring.demo.start.data;
 
 public class Greeting {
 
