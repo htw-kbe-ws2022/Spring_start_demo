@@ -14,7 +14,7 @@ public class ProductResponse {
 
     private int row;
     private List<Product> products;
-    private String location = "C:\\Buero\\uni\\HTW\\HTW_6_Sem\\KBE\\uebung\\firstRepo\\Spring_start_demo\\products.csv";
+    private String location = "./products.csv";
 
     public ProductResponse(){
         initProducts();
@@ -53,7 +53,7 @@ public class ProductResponse {
                 .withSkipLines(1)
                 .build()
                  .parse();
-        System.out.println(r.toString());
+        //System.out.println(r.toString());
 
 
 
