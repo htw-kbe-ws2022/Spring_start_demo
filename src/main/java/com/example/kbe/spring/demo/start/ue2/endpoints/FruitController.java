@@ -37,4 +37,20 @@ class FruitController {
           return fruitsRepository.findAll();
     }
 
+    @GetMapping("{id}")
+    public Fruits getSpecificFruit(@RequestParam(value = "id", defaultValue = "1")String id){
+        try{
+            return fruitsRepository.getReferenceById(Long.getLong(id));
+        }
+        catch (NullPointerException  NumberFormatException  ){
+            return fruitsRepository.getReferenceById((long) 1.0);
+        }
+    }
+
+
+    // todo post -> fruits
+
+    // todo change -> fruits
+    // todo delete -> fruits
+
 }
