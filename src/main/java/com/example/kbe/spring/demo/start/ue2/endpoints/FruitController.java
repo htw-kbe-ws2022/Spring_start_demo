@@ -6,10 +6,7 @@ import com.example.kbe.spring.demo.start.data.model.Fruits;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,18 +34,32 @@ class FruitController {
           return fruitsRepository.findAll();
     }
 
-    @GetMapping("{id}")
-    public Fruits getSpecificFruit(@RequestParam(value = "id", defaultValue = "1")String id){
+    @GetMapping("/{id}")
+    public Fruits getSpecificFruit(@PathVariable(value = "id")String id){
         try{
-            return fruitsRepository.getReferenceById(Long.getLong(id));
+            return fruitsRepository.getReferenceById(Long.parseLong(id, 10));
         }
         catch (NullPointerException  NumberFormatException  ){
             return fruitsRepository.getReferenceById((long) 1.0);
         }
+        catch (IllegalArgumentException e){
+            return null;
+        }
     }
 
 
-    // todo post -> fruits
+    @PostMapping("/add")
+    public Fruits setNewFruit(@RequestBody Fruits fruit){
+        fruitsRepository.save(fruit);
+        return fruit;
+    };
+    @PostMapping("/remove")
+    public String removeFruit(@RequestBody Fruits fruit){
+        fruitsRepository.delete(fruit);
+        return fruit.toString() + " has been deleted";
+    };
+
+
 
     // todo change -> fruits
     // todo delete -> fruits
