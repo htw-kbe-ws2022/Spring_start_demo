@@ -6,10 +6,12 @@ import com.example.kbe.spring.demo.start.data.model.Fruits;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.WebApplicationType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -35,15 +37,18 @@ class FruitController {
     }
 
     @GetMapping("/{id}")
-    public Fruits getSpecificFruit(@PathVariable(value = "id")String id){
+    public Fruits getSpecificFruit(@PathVariable(value = "id")Long id){
         try{
-            return fruitsRepository.getReferenceById(Long.parseLong(id, 10));
+            long longNr = Long.valueOf(id);
+            System.out.println(longNr);
+            var isInThere = fruitsRepository.existsById (longNr);
+            var result2 = fruitsRepository.findById(longNr);
+            var result = fruitsRepository.getReferenceById(longNr);
+            return result;
+
         }
         catch (NullPointerException  NumberFormatException  ){
             return fruitsRepository.getReferenceById((long) 1.0);
-        }
-        catch (IllegalArgumentException e){
-            return null;
         }
     }
 
@@ -52,16 +57,15 @@ class FruitController {
     public Fruits setNewFruit(@RequestBody Fruits fruit){
         fruitsRepository.save(fruit);
         return fruit;
-    };
-    @PostMapping("/remove")
-    public String removeFruit(@RequestBody Fruits fruit){
-        fruitsRepository.delete(fruit);
-        return fruit.toString() + " has been deleted";
-    };
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Fruits> removeFruitById(@PathVariable(value = "id") Long id) {
+        Optional<Fruits> fruit = fruitsRepository.findById(id);
+        fruitsRepository.deleteById(id);
+        return fruit.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(fruit.get());
+    }
 
 
-
-    // todo change -> fruits
-    // todo delete -> fruits
 
 }
