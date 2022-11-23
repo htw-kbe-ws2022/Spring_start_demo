@@ -1,12 +1,9 @@
 package com.example.kbe.spring.demo.start.ue2.endpoints;
 
-import com.example.kbe.spring.demo.start.data.Product;
-import com.example.kbe.spring.demo.start.data.ProductResponse;
 import com.example.kbe.spring.demo.start.data.model.Fruits;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.WebApplicationType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,14 +18,7 @@ class FruitController {
     @Autowired
     FruitsRepository fruitsRepository;
 
-    @GetMapping("/fuitsFromCsv")
-    public List<Product> csvResponse(@RequestParam(value = "PRODUCT_ID", defaultValue = "noOneGiven")String PRODUCT_ID){
-       val response = new ProductResponse(PRODUCT_ID);
-       if (response.getRow() == -1)
-           return response.getProducts();
-       else
-           return response.getProduct();
-    }
+
 
     @GetMapping("")
     public List<Fruits> getAllFruits(){

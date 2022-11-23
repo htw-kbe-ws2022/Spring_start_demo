@@ -11,3 +11,6 @@ docker delete myPostgresDb
 # Anwendung  bauen :
 docker build --build-arg JAR_FILE=target/*.jar -t jpl/backend_fruits .
 docker run -p 8080:8080 jpl/backend_fruits
+
+# 
+docker-compose up --force-recreate --build
