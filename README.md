@@ -14,3 +14,9 @@ docker run -p 8080:8080 jpl/backend_fruits
 
 # 
 docker-compose up --force-recreate --build
+
+### Run tests
+
+```bash
+mvn clean package -Dspring-boot.run.profiles=test
+```
